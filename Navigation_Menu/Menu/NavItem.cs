@@ -13,15 +13,6 @@ namespace Navigation_menu
         public string LinkURL { get; set; }
         public List<NavItem> ChildItems { get; set; }
 
-        public NavItem(int id, string menuName, int parentId, bool isHidden, string url)
-        {
-            ID = id;
-            MenuName = menuName;
-            ParentID = parentId;
-            IsHidden = isHidden;
-            LinkURL = url;
-        }
-
         public void AddChild(NavItem child)
         {
             if (ChildItems == null)

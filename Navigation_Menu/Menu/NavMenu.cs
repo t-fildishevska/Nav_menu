@@ -39,6 +39,7 @@ namespace Navigation_menu
                 }
             }
             Items.RemoveAll(x => x.ParentID != 0);
+            Items = Items.OrderBy(x => x.MenuName).ToList();
         }
 
         public void Start()

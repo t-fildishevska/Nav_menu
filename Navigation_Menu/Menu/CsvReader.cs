@@ -31,17 +31,26 @@ namespace Navigation_menu
 
         public NavItem ReadNavItemFromCsvLine(string csvLine)
         {
+            var navItem = new NavItem();
             string[] parts = csvLine.Split(';');
-            int ID = int.Parse(parts[0]);
-            string MenuName = parts[1];
+
+            navItem.ID = int.Parse(parts[0]);
+            navItem.MenuName = parts[1];
 
             bool ParID = int.TryParse(parts[2], out int ParentID);
-            if (!ParID) ParentID = 0;
+            if (ParID)
+            {
+                navItem.ParentID = ParentID;
+            }
+            else
+            {
+                navItem.ParentID = 0;
+            }
 
-            bool IsHidden = bool.Parse(parts[3]);
-            string LinkURL = parts[4];
+            navItem.IsHidden = bool.Parse(parts[3]);
+            navItem.LinkURL = parts[4];
 
-            return new NavItem(ID, MenuName, ParentID, IsHidden, LinkURL);
+            return navItem;
         }
     }
 }
